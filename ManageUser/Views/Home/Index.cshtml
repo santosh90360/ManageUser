@@ -1,0 +1,41 @@
+﻿@model List<UserModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <h5 class="display-6 text-primary">Welcome to user management</h5>
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <a asp-action="Create" asp-controller="Home" class="btn btn-sm btn-xs btn-success"> Create</a>
+        </div>
+
+    </div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th></th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Address</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Home" asp-route-id="@user.Id" class="btn btn-sm btn-info">Edit</a>
+                        <a asp-action="Delete" asp-controller="Home" asp-route-id="@user.Id" class="btn btn-sm btn-danger">Delete</a>
+         
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
